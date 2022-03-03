@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,16 +9,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesfranciscodelosrios.CajerosAutomaticosCliente.LoginController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="322.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@imagenes/202-2026912_atm-logo-png-atm-logo.png" />
          </image>
       </ImageView>
-      <TextField layoutX="348.0" layoutY="265.0" promptText="mail" />
-      <TextField layoutX="348.0" layoutY="340.0" promptText="password" />
+      <TextField fx:id="usernametxt" layoutX="348.0" layoutY="265.0" promptText="Username" />
       <ImageView fitHeight="45.0" fitWidth="44.0" layoutX="278.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@imagenes/perfil.png" />
@@ -28,11 +27,12 @@
             <Image url="@imagenes/lock.png" />
          </image>
       </ImageView>
-      <Button layoutX="399.0" layoutY="420.0" mnemonicParsing="false" text="Login" />
+      <Button fx:id="loginbtn" layoutX="399.0" layoutY="420.0" mnemonicParsing="false" onAction="#Login" text="Login" />
       <Text fill="#0177c1" layoutX="400.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
+      <PasswordField fx:id="passwordtxt" layoutX="348.0" layoutY="341.0" promptText="Password" />
    </children>
 </AnchorPane>
