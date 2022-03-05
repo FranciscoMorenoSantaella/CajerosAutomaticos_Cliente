@@ -1,8 +1,12 @@
 package org.iesfranciscodelosrios.CajerosAutomaticosCliente;
 
 import java.io.IOException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+import java.util.ArrayList;
+
+import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Admin;
+import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Client;
+import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.GesConec;
+import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Package;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +18,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Client;
 
 public class LoginController {
 
@@ -30,26 +33,46 @@ public class LoginController {
 	@FXML
 	private Text singuptxt;
 
-	public void Login() {
-		if (usernametxt.getLength() > 0 && passwordtxt.getLength() > 0) {
-			try {
-				Client c = new Client(usernametxt.getText(), passwordtxt.getText());
-				Client c1 = new Client("hola","hola");
-				if (c.equals(c1)) {
-					try {
-						switchToClientMenu();
-					} catch (Exception e) {
-						
-					}
-				}else {
-					showErrorAlert("Datos no válidos");
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
+	@FXML
+	private void logInAdmin() {
+		GesConec con = new GesConec("127.0.0.1", 9999);
+
+		if (!usernametxt.getText().isEmpty() && !passwordtxt.getText().isEmpty()) {
+			Package<Admin> sendPackage = new Package<>();
+			sendPackage.setObject(new Admin("", "", usernametxt.getText(), passwordtxt.getText(), new ArrayList<Client>()));
+			sendPackage.setOption(9);
+			con.sendObject(sendPackage);
+
+			@SuppressWarnings("unchecked")
+			Package<Admin> getPackage = (Package<Admin>) con.getObject();
+			if (getPackage.getResult()) {
+				// Cargar pantalla pasando el admin
+			} else {
+				// Mostrar error de login
 			}
+		} else {
+			// Mostrar error de campos
 		}
+
+//		if (usernametxt.getLength() > 0 && passwordtxt.getLength() > 0) {
+//			try {
+//				Client c = new Client(usernametxt.getText(), passwordtxt.getText());
+//				Client c1 = new Client("hola","hola");
+//				if (c.equals(c1)) {
+//					try {
+//						switchToClientMenu();
+//					} catch (Exception e) {
+//						
+//					}
+//				}else {
+//					showErrorAlert("Datos no válidos");
+//				}
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//			}
+//		}
 	}
-	
+
 	public void prueba() {
 		try {
 			switchToClientMenu();
@@ -61,6 +84,7 @@ public class LoginController {
 
 	/**
 	 * Este metodo sirve para cambiar de ventana desde el login al menú
+	 * 
 	 * @throws IOException
 	 */
 	@FXML
@@ -78,15 +102,15 @@ public class LoginController {
 			currentStage.close();
 			stage.show();
 		} catch (IOException ex) {
-		
+
 		}
 
 	}
-	
-	
+
 	/**
 	 * 
-	 * @param texto Este parámetro es el texto que le vamos a pasar a la alerta para que se le muestre al usuario
+	 * @param texto Este parámetro es el texto que le vamos a pasar a la alerta para
+	 *              que se le muestre al usuario
 	 */
 	public void showErrorAlert(String texto) {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
