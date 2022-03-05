@@ -3,11 +3,6 @@ package org.iesfranciscodelosrios.CajerosAutomaticosCliente;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Admin;
-import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Client;
-import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.GesConec;
-import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Package;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +13,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Account;
+import model.Admin;
+import model.Client;
+import model.GesConec;
+import model.Package;
 
 public class LoginController {
 
@@ -46,12 +46,12 @@ public class LoginController {
 			@SuppressWarnings("unchecked")
 			Package<Admin> getPackage = (Package<Admin>) con.getObject();
 			if (getPackage.getResult()) {
-				// Cargar pantalla pasando el admin
+				// TODO: Cargar pantalla pasando el admin
 			} else {
-				// Mostrar error de login
+				// TODO: Mostrar error de login
 			}
 		} else {
-			// Mostrar error de campos
+			// TODO: Mostrar error de campos
 		}
 
 //		if (usernametxt.getLength() > 0 && passwordtxt.getLength() > 0) {
@@ -71,6 +71,29 @@ public class LoginController {
 //				// TODO: handle exception
 //			}
 //		}
+	}
+	
+	@FXML
+	private void logInClient() {
+		GesConec con = new GesConec("127.0.0.1", 9999);
+
+		if (!usernametxt.getText().isEmpty() && !passwordtxt.getText().isEmpty()) {
+			Package<Client> sendPackage = new Package<>();
+			sendPackage.setObject(new Client("", "", usernametxt.getText(), passwordtxt.getText(), new ArrayList<Account>(), new Admin()));
+			sendPackage.setOption(5);
+			con.sendObject(sendPackage);
+
+			@SuppressWarnings("unchecked")
+			Package<Client> getPackage = (Package<Client>) con.getObject();
+			if (getPackage.getResult()) {
+				// Cargar pantalla pasando el cliente
+			} else {
+				// Mostrar error de login
+			}
+		} else {
+			// Mostrar error de campos
+		}
+
 	}
 
 	public void prueba() {

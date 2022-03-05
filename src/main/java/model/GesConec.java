@@ -1,4 +1,4 @@
-package org.iesfranciscodelosrios.CajerosAutomaticosCliente.model;
+package model;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
