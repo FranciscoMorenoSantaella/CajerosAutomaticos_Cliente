@@ -94,25 +94,10 @@ public class Account implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-		if (balance == null) {
-			if (other.balance != null)
-				return false;
-		} else if (!balance.equals(other.balance))
-			return false;
-		if (client == null) {
-			if (other.client != null)
-				return false;
-		} else if (!client.equals(other.client))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (number == null) {
-			if (other.number != null)
-				return false;
-		} else if (!number.equals(other.number))
 			return false;
 		return true;
 	}
