@@ -54,6 +54,11 @@ public class Client implements Serializable {
 		this.accounts = accounts;
 		this.admin = admin;
 	}
+	
+	
+
+
+
 
 	public Client() {
 		this("", "", "", "", new ArrayList<Account>(), new Admin());
