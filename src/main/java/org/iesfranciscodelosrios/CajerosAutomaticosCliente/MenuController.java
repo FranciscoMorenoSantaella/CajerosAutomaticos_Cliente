@@ -64,7 +64,7 @@ public class MenuController {
 	
 	/**
 	 * 
-	 * @param texto Este parámetro es el texto que le vamos a pasar a la alerta para
+	 * @param texto Este parámetro es el texto que le vamos a pasar a la alerta de error para
 	 *              que se le muestre al usuario
 	 */
 	public void showErrorAlert(String texto) {
@@ -77,7 +77,7 @@ public class MenuController {
 	
 	/**
 	 * 
-	 * @param texto Este parámetro es el texto que le vamos a pasar a la alerta para
+	 * @param texto Este parámetro es el texto que le vamos a pasar a la alerta informativa para
 	 *              que se le muestre al usuario
 	 */
 	public void showInfoAlert(String texto) {
