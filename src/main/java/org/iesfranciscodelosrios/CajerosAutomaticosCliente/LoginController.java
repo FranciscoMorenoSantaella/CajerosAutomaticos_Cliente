@@ -46,6 +46,7 @@ public class LoginController {
 			@SuppressWarnings("unchecked")
 			Package<Admin> getPackage = (Package<Admin>) con.getObject();
 			if (getPackage.getResult()) {
+				System.out.println(getPackage);
 				// TODO: Cargar pantalla pasando el admin
 			} else {
 				// TODO: Mostrar error de login
