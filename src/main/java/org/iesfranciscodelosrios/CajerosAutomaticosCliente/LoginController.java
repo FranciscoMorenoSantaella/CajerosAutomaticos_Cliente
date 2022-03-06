@@ -54,6 +54,7 @@ public class LoginController {
 		} else {
 			// TODO: Mostrar error de campos
 		}
+	}
 
 //		if (usernametxt.getLength() > 0 && passwordtxt.getLength() > 0) {
 //			try {
@@ -72,7 +73,7 @@ public class LoginController {
 //				// TODO: handle exception
 //			}
 //		}
-	}
+	
 	
 	@FXML
 	private void logInClient() {

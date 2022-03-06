@@ -2,10 +2,8 @@ package org.iesfranciscodelosrios.CajerosAutomaticosCliente;
 
 import java.util.List;
 
-import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Account;
-import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Admin;
-import org.iesfranciscodelosrios.CajerosAutomaticosCliente.model.Client;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -13,9 +11,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import model.Account;
+import model.Admin;
+import model.Client;
 
 public class AdminController {
-	List<Account> accountList;
+	ObservableList<Account> accountlist = FXCollections.observableArrayList();
 	@FXML
 	private TextField namefield;
 	
@@ -70,8 +71,8 @@ public class AdminController {
 			Account prueba = new Account();
 			//Traer el admin para asignarselo
 			Admin admin = new Admin();
-			this.accountList.add(prueba);
-			Client nclient = new Client(namefield.getText(),surnamefield.getText(),usernamefield.getText(),passwordfield.getText(),accountList,admin);
+			this.accountlist.add(prueba);
+			Client nclient = new Client(namefield.getText(),surnamefield.getText(),usernamefield.getText(),passwordfield.getText(),accountlist,admin);
 			//crear cliente falta
 			showInfoAlert("El cliente se ha creado correctamente");
 			namefield.setText("");

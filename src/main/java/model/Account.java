@@ -43,7 +43,7 @@ public class Account implements Serializable {
 	}
 
 	public Account() {
-		this("", Double.MIN_VALUE, new Client());
+		this("", 10.0, new Client());
 	}
 
 	public Long getId() {
