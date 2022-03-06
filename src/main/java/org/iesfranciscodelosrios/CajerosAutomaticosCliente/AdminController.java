@@ -33,6 +33,9 @@ public class AdminController {
 	private TextField numaccountfield;
 	
 	@FXML
+	private TextField numaccountfield2;
+	
+	@FXML
 	private ComboBox<Client> clientDrop;
 	
 	@FXML
@@ -57,10 +60,41 @@ public class AdminController {
 	private Button createbtn;
 	
 	@FXML
+	private Button createbtn2;
+	
+	@FXML
 	private ListView<Account> accountlistview;
 	
 	@FXML
 	private ListView<Client> clientelistview;
+	
+	/*
+	 * Este método sirve para seleccionar la lista de cuentas
+	 */
+	@FXML
+	public void selectItem() {
+		if(accountlistview.getSelectionModel().getSelectedItem()!=null) {
+			nametxt.setText(accountlistview.getSelectionModel().getSelectedItem().getNumber());
+			balancetxt.setText(accountlistview.getSelectionModel().getSelectedItem().getBalance()+"");
+		}else {
+			showErrorAlert("No se ha podido seleccionar el item");
+		}
+	}
+	
+	/*
+	 * Este método sirve para seleccionar la lista de clientes
+	 */
+	@FXML
+	public void selectItem2() {
+		if(clientelistview.getSelectionModel().getSelectedItem()!=null) {
+			clientnametxt.setText(clientelistview.getSelectionModel().getSelectedItem().getName());
+			clientsurnametxt.setText(clientelistview.getSelectionModel().getSelectedItem().getSurname());
+			clientusernametxt.setText(clientelistview.getSelectionModel().getSelectedItem().getUsername());
+		}else {
+			showErrorAlert("No se ha podido seleccionar el item");
+		}
+	}
+	
 	
 	/**
 	 * Este método sirve para que un administrador cree un nuevo cliente
