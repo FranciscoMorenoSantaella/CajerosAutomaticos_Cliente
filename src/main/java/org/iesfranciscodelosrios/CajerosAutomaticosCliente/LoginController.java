@@ -46,34 +46,34 @@ public class LoginController {
 			@SuppressWarnings("unchecked")
 			Package<Admin> getPackage = (Package<Admin>) con.getObject();
 			if (getPackage.getResult()) {
-				System.out.println(getPackage);
-				// TODO: Cargar pantalla pasando el admin
+				if (getPackage.getObject() != null) {
+					try {
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuAdmin.fxml"));
+						Parent parent;
+						parent = loader.load();
+						AdminController adminController = loader.getController();
+						adminController.loadAdmin(getPackage.getObject());
+						Stage stage = new Stage();
+						stage.setScene(new Scene(parent));
+						stage.setTitle("Admin window");
+						stage.setResizable(false);
+						Stage currentStage = (Stage) loginbtn.getScene().getWindow();
+						currentStage.close();
+						stage.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+				} else {
+					showErrorAlert("Valores introducidos incorrectos");
+				}
 			} else {
-				// TODO: Mostrar error de login
+				showErrorAlert("asdasdsadasdasd");
 			}
 		} else {
-			// TODO: Mostrar error de campos
+			showErrorAlert("Campos vacios");
 		}
 	}
-
-//		if (usernametxt.getLength() > 0 && passwordtxt.getLength() > 0) {
-//			try {
-//				Client c = new Client(usernametxt.getText(), passwordtxt.getText());
-//				Client c1 = new Client("hola","hola");
-//				if (c.equals(c1)) {
-//					try {
-//						switchToClientMenu();
-//					} catch (Exception e) {
-//						
-//					}
-//				}else {
-//					showErrorAlert("Datos no válidos");
-//				}
-//			} catch (Exception e) {
-//				// TODO: handle exception
-//			}
-//		}
-	
 	
 	@FXML
 	private void logInClient() {
@@ -88,46 +88,30 @@ public class LoginController {
 			@SuppressWarnings("unchecked")
 			Package<Client> getPackage = (Package<Client>) con.getObject();
 			if (getPackage.getResult()) {
-				// Cargar pantalla pasando el cliente
+				if (getPackage.getObject() != null) {
+					try {
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+						Parent parent = loader.load();
+						MenuController mainMenuController = loader.getController();
+						mainMenuController.loadUser(getPackage.getObject());
+						Stage stage = new Stage();
+						stage.setScene(new Scene(parent));
+						stage.setTitle("Main window");
+						stage.setResizable(false);
+						Stage currentStage = (Stage) loginbtn.getScene().getWindow();
+						currentStage.close();
+						stage.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else {
+					showErrorAlert("Valores introducidos incorrectos");
+				}
 			} else {
-				// Mostrar error de login
+				showErrorAlert("sdafsadfasdfdsaf");
 			}
 		} else {
-			// Mostrar error de campos
-		}
-
-	}
-
-	public void prueba() {
-		try {
-			switchToClientMenu();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Este metodo sirve para cambiar de ventana desde el login al menú
-	 * 
-	 * @throws IOException
-	 */
-	@FXML
-	private void switchToClientMenu() throws IOException {
-
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
-			Parent parent = loader.load();
-			MenuController mainMenuController = loader.getController();
-			Stage stage = new Stage();
-			stage.setScene(new Scene(parent));
-			stage.setTitle("Main window");
-			stage.setResizable(false);
-			Stage currentStage = (Stage) loginbtn.getScene().getWindow();
-			currentStage.close();
-			stage.show();
-		} catch (IOException ex) {
-
+			showErrorAlert("Campos vacios");
 		}
 
 	}
