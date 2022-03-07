@@ -140,8 +140,12 @@ public class AdminController {
 		}
 	}
 
-	public void loadAdmin(Admin admin) {
+	public void loadAdmin(@SuppressWarnings("exports") Admin admin) {
 		this.admin = admin;
+		this.clientList.setAll(this.admin.getClients());
+		for(Client c: clientList) {
+			this.accountList.addAll(c.getAccounts());
+		}
 	}
 
 	/**
