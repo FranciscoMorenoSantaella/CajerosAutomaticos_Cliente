@@ -146,7 +146,6 @@ public class AdminController {
 			con.sendObject(sendPackage);
 			showInfoAlert("La cuenta se ha eliminado correctamente");
 			accountList.remove(accountlistview.getSelectionModel().getSelectedItem());
-			accountlistview.setItems(accountList);
 		} else {
 			showErrorAlert("No se ha seleccionado ninguna cuenta");
 		}
@@ -173,7 +172,6 @@ public class AdminController {
 			con.sendObject(sendPackage);
 			showInfoAlert("La cuenta se ha creado correctamente");
 			accountList.add(ac);
-			accountlistview.setItems(accountList);
 		} else {
 			showErrorAlert("No se ha podido crear la cuenta");
 		}
