@@ -29,6 +29,9 @@ public class LoginController {
 
 	@FXML
 	private Button loginbtn;
+	
+	@FXML
+	private Button adminbtn;
 
 	@FXML
 	private Text singuptxt;
@@ -74,6 +77,10 @@ public class LoginController {
 			showErrorAlert("Campos vacios");
 		}
 	}
+	
+	
+	
+	
 	
 	@FXML
 	private void logInClient() {
